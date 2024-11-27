@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rumo Certo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="tela-inicial" class="screen active">
+            <img src="assets/icon.png" id="image">
+            <h1>Rumo Certo</h1>
+            <h2>Essa viagem vale a pena?!</h2>
+            <p>Saiba o custo por Km de suas viagens como motorista de aplicativo e decida se aceita ou não... e muito mais!</p>
+            <button onclick="calcularRelatorio()">RELATÓRIO DA VIAGEM</button>
+            <button onclick="navigateTo('cadastrar-carro')">Cadastrar Informações do Carro</button>
+            <button onclick="navigateTo('cadastrar-km')">Cadastrar Km/l e Km estimado por ano</button>
+            <button onclick="navigateTo('cadastrar-corrida')">Cadastrar Manualmente dados da Corrida</button>
+        </div>
+
+        <!-- Cadastrar Informações do Carro -->
+        <div id="cadastrar-carro" class="screen">
+            <h2>Cadastrar Informações do Carro</h2>
+           <!-- Atributos básicos -->
+            <label for="nomeMotorista" class="carro">Nome do Motorista:</label>
+            <input type="text" id="nomeMotorista" name="nomeMotorista" class="carro" value="João" title="Digite o nome do motorista">
+
+            <label for="marcaCarro" class="carro">Marca do Carro:</label>
+            <input type="text" id="marcaCarro" name="marcaCarro" class="carro" value="Fiat" title="Digite a marca do carro">
+
+            <label for="modeloCarro" class="carro">Modelo do Carro:</label>
+            <input type="text" id="modeloCarro" name="modeloCarro" class="carro" value="Argo" title="Digite o modelo do carro">
+
+            <label for="anoCarro" class="carro">Ano do Carro:</label>
+            <input type="number" id="anoCarro" name="anoCarro" class="carro" value="2021" title="Digite o ano de fabricação do carro">
+
+            <label for="valorCarro" class="carro">Valor do Carro (R$):</label>
+            <input type="number" id="valorCarro" name="valorCarro" class="carro" value="70000" title="Digite o valor atual do carro">
+
+            <label for="valorEstimadoVenda" class="carro">Valor Estimado de Venda (R$):</label>
+            <input type="number" id="valorEstimadoVenda" name="valorEstimadoVenda" class="carro" value="40000" title="Informe o valor estimado de venda do carro">
+
+            <label for="vidaUtilEstimadaAnos" class="carro">Vida Útil Estimada (anos):</label>
+            <input type="number" id="vidaUtilEstimadaAnos" name="vidaUtilEstimadaAnos" class="carro" value="5" title="Digite a vida útil estimada do carro em anos">
+
+            <label for="seguroCarro" class="carro">Seguro do Carro (R$):</label>
+            <input type="number" id="seguroCarro" name="seguroCarro" class="carro" value="4000" title="Informe o valor do seguro anual do carro">
+
+            <label for="tributosCarro" class="carro">Tributos do Carro (R$):</label>
+            <input type="number" id="tributosCarro" name="tributosCarro" class="carro" value="3000" title="Informe o valor dos tributos pagos pelo carro">
+
+            <label for="valorLitroCombustivel" class="carro">Valor por Litro de Combustível (R$):</label>
+            <input type="number" id="valorLitroCombustivel" name="valorLitroCombustivel" class="carro" step="0.01" value="6" title="Informe o valor do litro de combustível">
+
+            <!-- Custos de manutenção preventiva -->
+            <label for="trocaOleo" class="manutencaoPrev">Troca de Óleo (R$):</label>
+            <input type="number" id="trocaOleo" name="trocaOleo" class="manutencaoPrev" value="400" title="Informe o valor da troca de óleo">
+
+            <label for="trocaFiltroCombustivel" class="manutencaoPrev">Troca de Filtro de Combustível (R$):</label>
+            <input type="number" id="trocaFiltroCombustivel" name="trocaFiltroCombustivel" class="manutencaoPrev" value="100" title="Informe o valor da troca de filtro de combustível">
+
+            <label for="trocaFiltroAr" class="manutencaoPrev">Troca de Filtro de Ar (R$):</label>
+            <input type="number" id="trocaFiltroAr" name="trocaFiltroAr" class="manutencaoPrev" value="1000" title="Informe o valor da troca de filtro de ar">
+
+            <label for="alinhamentoBalanceamento" class="manutencaoPrev">Alinhamento e Balanceamento (R$):</label>
+            <input type="number" id="alinhamentoBalanceamento" name="alinhamentoBalanceamento" class="manutencaoPrev" value="200" title="Informe o valor do alinhamento e balanceamento">
+
+            <label for="revisaoVelas" class="manutencaoPrev">Revisão das Velas (R$):</label>
+            <input type="number" id="revisaoVelas" name="revisaoVelas" class="manutencaoPrev" value="250" title="Informe o valor da revisão das velas">
+
+            <label for="revisaoFreios" class="manutencaoPrev">Revisão de Freios (R$):</label>
+            <input type="number" id="revisaoFreios" name="revisaoFreios" class="manutencaoPrev" value="600" title="Informe o valor da revisão dos freios">
+
+            <label for="revisaoSuspensao" class="manutencaoPrev">Revisão de Suspensão (R$):</label>
+            <input type="number" id="revisaoSuspensao" name="revisaoSuspensao" class="manutencaoPrev" value="300" title="Informe o valor da revisão da suspensão">
+
+            <label for="trocaPneus" class="manutencaoPrev">Troca de Pneus (R$):</label>
+            <input type="number" id="trocaPneus" name="trocaPneus" class="manutencaoPrev" value="3500" title="Informe o valor da troca de pneus">
+
+            <!-- Custos de manutenção corretiva -->
+            <label for="trocaEmbreagem" class="manutencaoCorr">Troca de Embreagem (R$):</label>
+            <input type="number" id="trocaEmbreagem" name="trocaEmbreagem" class="manutencaoCorr" value="2000" title="Informe o valor da troca da embreagem">
+
+            <label for="trocaAmortecedores" class="manutencaoCorr">Troca de Amortecedores (R$):</label>
+            <input type="number" id="trocaAmortecedores" name="trocaAmortecedores" class="manutencaoCorr" value="1300" title="Informe o valor da troca de amortecedores">
+
+            <label for="reparoSistemaFreios" class="manutencaoCorr">Reparo do Sistema de Freios (R$):</label>
+            <input type="number" id="reparoSistemaFreios" name="reparoSistemaFreios" class="manutencaoCorr" value="1300" title="Informe o valor do reparo do sistema de freios">
+
+            <label for="trocaCorreiaDentada" class="manutencaoCorr">Troca de Correia Dentada (R$):</label>
+            <input type="number" id="trocaCorreiaDentada" name="trocaCorreiaDentada" class="manutencaoCorr" value="1000" title="Informe o valor da troca da correia dentada">
+
+            <label for="trocaBateria" class="manutencaoCorr">Troca de Bateria (R$):</label>
+            <input type="number" id="trocaBateria" name="trocaBateria" class="manutencaoCorr" value="1000" title="Informe o valor da troca da bateria">
+
+            <label for="reparoMotor" class="manutencaoCorr">Reparo do Motor (R$):</label>
+            <input type="number" id="reparoMotor" name="reparoMotor" class="manutencaoCorr" value="8000" title="Informe o valor do reparo do motor">
+
+            <label for="outros" class="manutencaoCorr">Outros Custos (R$):</label>
+            <input type="number" id="outros" name="outros" class="manutencaoCorr" value="2000" title="Informe outros custos de manutenção corretiva">
+
+            <button onclick="saveCarInfo()">Salvar</button>
+            <button onclick="navigateTo('tela-inicial')">Cancelar</button>
+        </div>
+
+        <!-- Cadastrar Km/l e Km estimado por ano -->
+        <div id="cadastrar-km" class="screen">
+            <h2>Cadastrar Km/l e Km estimado por ano</h2>
+        
+            <label for="kmPorLitro" class="km">Km por Litro:</label>
+            <input type="number" id="kmPorLitro" name="kmPorLitro" class="km" step="0.1" value="7" title="Informe a média de quilômetros percorridos por litro de combustível">
+            
+            <label for="kmEstimadoRodadosAno" class="km">Km Estimado Rodados por Ano:</label>
+            <input type="number" id="kmEstimadoRodadosAno" name="kmEstimadoRodadosAno" class="km" step="0.1" value="45000" title="Informe a estimativa de quilômetros rodados por ano">
+           
+                             
+            <button onclick="saveKmInfo()">Salvar</button>
+            <button onclick="navigateTo('tela-inicial')">Cancelar</button>
+        </div>
+
+        <!-- Cadastrar Manualmente dados da Corrida -->
+        <div id="cadastrar-corrida" class="screen">
+            <h2>Cadastrar Manualmente dados da Corrida</h2>
+            
+            <label for="valorViagem" class="viagem">Valor da viagem (R$):</label>
+            <input type="number" id="valorViagem" name="valorViagem" class="viagem" value="" title="Informe o valor">
+
+            <label for="taxaApp" class="viagem">Taxa do aplicativo(R$):</label>
+            <input type="number" id="taxaApp" name="taxaApp" class="viagem" value="" title="Informe a taxa aplicada">
+          
+            <label for="kmViagem" class="kmViagem">Quantidade de Km</label>
+            <input type="number" id="kmViagem" name="kmViagem" class="viagem" value="" title="Informe a quantidade de km da viagem">
+            
+            <button onclick="saveCorridaInfo()">Salvar</button>
+            <button onclick="navigateTo('tela-inicial')">Cancelar</button>
+        </div>
+
+        <!-- Relatório da Viagem -->
+        <div id="relatorio-viagem" class="screen">
+            <h2>RELATÓRIO DESTA VIAGEM</h2>
+            <p id="relatorio-conteudo1" class="relatorioNegrito"></p>
+            <p id="relatorio-conteudo2" class="relatorioNegrito"></p>
+            <p id="relatorio-conteudo3" class="relatorioNegrito"></p>
+            <p id="relatorio-conteudo4"></p>
+            <p id="relatorio-conteudo5"></p>
+            <p id="relatorio-conteudo6"></p>
+            <button onclick="navigateTo('tela-inicial')">Fechar</button>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
